@@ -23,3 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Claude Code & local tools
+.claude/
+ruvector.db
