@@ -72,7 +72,10 @@ export const siteConfig = {
     ],
     googleBusinessUrl:   '',   // URL du profil Google Business
     googleAnalyticsId:   '',   // G-XXXXXXXXXX
-    googleSearchConsole: '',   // meta verification tag
+    googleSearchConsole: '',   // meta verification tag (content="...")
+    bingWebmasterKey:    '',   // Bing Webmaster Tools verification key
+    plausibleDomain:     '',   // ex: cabinet-aubry.fr (Plausible Analytics)
+    sentryDsn:           '',   // Sentry DSN (https://xxx@sentry.io/yyy)
     locale:              'fr_FR',
     siteUrl:             'https://cabinet-aubry.fr',
     ogImage:             '/assets/og-image.jpg',
@@ -132,7 +135,9 @@ export const siteConfig = {
     testimonials:  true,    // true = section témoignages visible
     newsletter:    false,   // true = champ email dans footer
     cookieBanner:  true,    // true = bandeau RGPD
-    analytics:     false,   // true = inject GA / Plausible
+    analytics:     false,   // true = inject GA (seo.googleAnalyticsId requis)
+    plausible:     false,   // true = inject Plausible (seo.plausibleDomain requis)
+    sentry:        false,   // true = inject Sentry (seo.sentryDsn requis)
   },
 
   // ── 7. CONTENT ─────────────────────────────────────────────────────────────
@@ -231,27 +236,30 @@ export const siteConfig = {
           price:     '180',
           unit:      '/ heure',
           desc:      'Analyse de votre situation, conseils pratiques, réponses à vos questions urgentes.',
-          features:  ['Rendez-vous 1h en cabinet ou visio', 'Compte-rendu écrit inclus', 'Sans engagement'],
-          cta:       'Réserver',
-          highlight: false,
+          features:   ['Rendez-vous 1h en cabinet ou visio', 'Compte-rendu écrit inclus', 'Sans engagement'],
+          cta:        'Réserver',
+          highlight:  false,
+          stripeLink: '',   // lien de paiement Stripe (https://buy.stripe.com/...)
         },
         {
-          name:      'Mission ponctuelle',
-          price:     'Sur devis',
-          unit:      '',
-          desc:      'Rédaction de contrats, statuts, CGV, ou gestion d\'un dossier contentieux spécifique.',
-          features:  ['Devis fixe remis avant démarrage', 'Délai garanti contractuellement', 'Suivi dédié'],
-          cta:       'Demander un devis',
-          highlight: true,
+          name:       'Mission ponctuelle',
+          price:      'Sur devis',
+          unit:       '',
+          desc:       'Rédaction de contrats, statuts, CGV, ou gestion d\'un dossier contentieux spécifique.',
+          features:   ['Devis fixe remis avant démarrage', 'Délai garanti contractuellement', 'Suivi dédié'],
+          cta:        'Demander un devis',
+          highlight:  true,
+          stripeLink: '',
         },
         {
-          name:      'Suivi annuel',
-          price:     '290',
-          unit:      '/ mois',
-          desc:      'Accompagnement récurrent pour les entreprises qui veulent un partenaire juridique de fond.',
-          features:  ['4h de conseil / mois incluses', 'Réponses sous 24h', 'Revue trimestrielle des risques'],
-          cta:       'En savoir plus',
-          highlight: false,
+          name:       'Suivi annuel',
+          price:      '290',
+          unit:       '/ mois',
+          desc:       'Accompagnement récurrent pour les entreprises qui veulent un partenaire juridique de fond.',
+          features:   ['4h de conseil / mois incluses', 'Réponses sous 24h', 'Revue trimestrielle des risques'],
+          cta:        'En savoir plus',
+          highlight:  false,
+          stripeLink: '',   // lien Stripe Billing (abonnement mensuel)
         },
       ],
     },

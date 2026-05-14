@@ -4,10 +4,12 @@ import { siteConfig } from '../config/site';
 interface Props {
   title: string;
   description: string;
+  canonical?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonical } = Astro.props;
 const { branding, seo, features } = siteConfig;
+const canonicalUrl = canonical ?? `${seo.siteUrl}${Astro.url.pathname}`;
 
 // Tokens neutrals warm-paper (invariants, indépendants de la couleur brand)
 const tokens = {
@@ -32,9 +34,17 @@ const tokens = {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Webmaster verification -->
+    {seo.googleSearchConsole && <meta name="google-site-verification" content={seo.googleSearchConsole} />}
+    {seo.bingWebmasterKey    && <meta name="msvalidate.01" content={seo.bingWebmasterKey} />}
+
     <!-- Open Graph -->
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url"         content={canonicalUrl} />
     <meta property="og:locale"      content={seo.locale} />
     <meta property="og:type"        content="website" />
     {seo.ogImage && <meta property="og:image" content={`${seo.siteUrl}${seo.ogImage}`} />}
@@ -48,12 +58,31 @@ const tokens = {
       rel="stylesheet"
     />
 
-    <!-- Analytics (opt-in via features.analytics) -->
+    <!-- Analytics GA (opt-in via features.analytics) -->
     {features.analytics && seo.googleAnalyticsId && (
       <script is:inline define:vars={{ gid: seo.googleAnalyticsId }}>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date()); gtag('config', gid);
+      </script>
+    )}
+
+    <!-- Analytics Plausible (opt-in via features.plausible, privacy-friendly) -->
+    {features.plausible && seo.plausibleDomain && (
+      <script
+        is:inline
+        defer
+        data-domain={seo.plausibleDomain}
+        src="https://plausible.io/js/script.js"
+      />
+    )}
+
+    <!-- Sentry (opt-in via features.sentry) -->
+    {features.sentry && seo.sentryDsn && (
+      <script is:inline define:vars={{ dsn: seo.sentryDsn }}>
+        import('https://browser.sentry-cdn.com/7.x.x/bundle.min.js').then(() => {
+          Sentry.init({ dsn, tracesSampleRate: 0.1 });
+        });
       </script>
     )}
   </head>
