@@ -285,9 +285,9 @@ if (menuTrigger && overlayNav) {
 .overlay-menu {
   position: fixed; inset: 0; background: var(--bg); z-index: 200;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s, visibility 0.3s;
 }
-.overlay-menu.open { opacity: 1; pointer-events: auto; }
+.overlay-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
 .overlay-close { position: absolute; top: 24px; right: 24px; font-size: 32px; background: none; border: none; cursor: pointer; }
 .overlay-nav { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .overlay-link { font-size: 24px; font-weight: 600; }
