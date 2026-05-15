@@ -336,7 +336,7 @@ export const siteConfig = {
         { label: 'CGV',              href: '/cgv' },
         { label: 'RGPD',             href: '/rgpd' },
       ],
-      madeBy: 'Site réalisé par Bafra',
+      madeBy: 'Site réalisé par <a href="https://guyboireau.com" rel="noopener" target="_blank">guyboireau.com</a>',
     },
     portfolio: {
       items: [
