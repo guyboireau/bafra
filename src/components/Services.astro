@@ -17,227 +17,229 @@ const icons: Record<string, string> = {
 };
 ---
 
-{/* ── Variante A : grille 3 colonnes ─────────────────────────────────── */}
-<section class="section v-only-a" id="services-a">
-  <div class="container">
-    <div class="srv-a-head">
-      <p class="eyebrow">{services.eyebrow}</p>
-      <h2 class="srv-h2">{services.title}</h2>
-      <p class="srv-sub">{services.subtitle}</p>
-    </div>
-    <div class="srv-a-grid">
-      {services.items.map((item) => (
-        <article class="card srv-a-card">
-          <div class="srv-a-icon-wrap" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" set:html={icons[item.icon] ?? icons.star} />
-          </div>
-          <h3 class="srv-a-title">{item.title}</h3>
-          <p class="srv-a-text">{item.text}</p>
-          <a href="#contact" class="srv-a-link">{item.link}</a>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* ── Variante B : liste numérotée ────────────────────────────────────── */}
-<section class="section section-alt v-only-b" id="services-b">
-  <div class="container">
-    <div class="srv-b-head">
-      <p class="eyebrow">{services.eyebrow}</p>
-      <h2 class="srv-h2">{services.title}</h2>
-    </div>
-    <div class="srv-b-list">
-      {services.items.map((item, i) => (
-        <article class="srv-b-row">
-          <span class="srv-b-num" aria-hidden="true">0{i + 1}</span>
-          <div class="srv-b-body">
-            <div class="srv-b-titlerow">
-              <h3 class="srv-b-title">{item.title}</h3>
-              {item.tag && <span class="srv-b-tag">{item.tag}</span>}
-            </div>
-            <p class="srv-b-text">{item.text}</p>
-          </div>
-          <a href="#contact" class="btn btn-ghost srv-b-link" aria-label={`En savoir plus : ${item.title}`}>→</a>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* ── Variante C : accordéon (expand) ─────────────────────────────────── */}
-<section class="section v-only-c" id="services-c">
-  <div class="container">
-    <div class="srv-c-head">
-      <p class="eyebrow">{services.eyebrow}</p>
-      <h2 class="srv-h2">{services.title}</h2>
-    </div>
-    <div class="srv-c-list">
-      {services.items.map((item, i) => (
-        <div class={`srv-c-item ${i === 0 ? 'open' : ''}`}>
-          <button
-            class="srv-c-trigger"
-            aria-expanded={i === 0 ? 'true' : 'false'}
-            aria-controls={`srv-panel-${i}`}
-          >
-            <div class="srv-c-trigger-left">
-              <span class="srv-c-num eyebrow">0{i + 1}</span>
-              <h3 class="srv-c-title">{item.title}</h3>
-            </div>
-            <span class="srv-c-icon">{i === 0 ? '–' : '+'}</span>
-          </button>
-          <div
-            class="srv-c-panel"
-            id={`srv-panel-${i}`}
-            hidden={i !== 0}
-          >
-            <div class="srv-c-content">
-              <div class="srv-c-text-wrap">
-                <p class="srv-c-text">{item.text}</p>
-                <a href="#contact" class="btn btn-outline btn-sm">Voir un cas →</a>
-              </div>
-              {item.features && (
-                <ul class="srv-c-features">
-                  {item.features.map(f => (
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 6L9 17l-5-5"/>
-                      </svg>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* ── Variante E : Le Salon — liste numérotée éditoriale ─────────────── */}
-<section class="section v-only-e srv-e" id="services-e">
-  <div class="container">
-    <div class="srv-e-grid">
-      <div class="srv-e-head">
-        <div class="srv-e-eyebrow">{services.eyebrow}</div>
-        <h2 class="srv-e-h2">{services.title}</h2>
+<div id="services">
+  {/* ── Variante A : grille 3 colonnes ─────────────────────────────────── */}
+  <section class="section v-only-a">
+    <div class="container">
+      <div class="srv-a-head">
+        <p class="eyebrow">{services.eyebrow}</p>
+        <h2 class="srv-h2">{services.title}</h2>
+        <p class="srv-sub">{services.subtitle}</p>
       </div>
-      <div class="srv-e-list">
-        {services.items.map((item, i) => (
-          <div class="srv-e-row">
-            <span class="srv-e-num">0{i + 1}</span>
-            <div class="srv-e-body">
-              <h3 class="srv-e-title">{item.title}</h3>
-              <p class="srv-e-text">{item.text}</p>
+      <div class="srv-a-grid">
+        {services.items.map((item) => (
+          <article class="card srv-a-card">
+            <div class="srv-a-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" set:html={icons[item.icon] ?? icons.star} />
             </div>
-            <span class="srv-e-arrow">↓ découvrir</span>
+            <h3 class="srv-a-title">{item.title}</h3>
+            <p class="srv-a-text">{item.text}</p>
+            <a href="#contact" class="srv-a-link">{item.link}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Variante B : liste numérotée ────────────────────────────────────── */}
+  <section class="section section-alt v-only-b">
+    <div class="container">
+      <div class="srv-b-head">
+        <p class="eyebrow">{services.eyebrow}</p>
+        <h2 class="srv-h2">{services.title}</h2>
+      </div>
+      <div class="srv-b-list">
+        {services.items.map((item, i) => (
+          <article class="srv-b-row">
+            <span class="srv-b-num" aria-hidden="true">0{i + 1}</span>
+            <div class="srv-b-body">
+              <div class="srv-b-titlerow">
+                <h3 class="srv-b-title">{item.title}</h3>
+                {item.tag && <span class="srv-b-tag">{item.tag}</span>}
+              </div>
+              <p class="srv-b-text">{item.text}</p>
+            </div>
+            <a href="#contact" class="btn btn-ghost srv-b-link" aria-label={`En savoir plus : ${item.title}`}>→</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Variante C : accordéon (expand) ─────────────────────────────────── */}
+  <section class="section v-only-c">
+    <div class="container">
+      <div class="srv-c-head">
+        <p class="eyebrow">{services.eyebrow}</p>
+        <h2 class="srv-h2">{services.title}</h2>
+      </div>
+      <div class="srv-c-list">
+        {services.items.map((item, i) => (
+          <div class={`srv-c-item ${i === 0 ? 'open' : ''}`}>
+            <button
+              class="srv-c-trigger"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`srv-panel-${i}`}
+            >
+              <div class="srv-c-trigger-left">
+                <span class="srv-c-num eyebrow">0{i + 1}</span>
+                <h3 class="srv-c-title">{item.title}</h3>
+              </div>
+              <span class="srv-c-icon">{i === 0 ? '–' : '+'}</span>
+            </button>
+            <div
+              class="srv-c-panel"
+              id={`srv-panel-${i}`}
+              hidden={i !== 0}
+            >
+              <div class="srv-c-content">
+                <div class="srv-c-text-wrap">
+                  <p class="srv-c-text">{item.text}</p>
+                  <a href="#contact" class="btn btn-outline btn-sm">Voir un cas →</a>
+                </div>
+                {item.features && (
+                  <ul class="srv-c-features">
+                    {item.features.map(f => (
+                      <li>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{/* ── Variante F : Stade — grille cards bordered ───────────────────────── */}
-<section class="section v-only-f srv-f" id="services-f">
-  <div class="container">
-    <div class="srv-f-head">
-      <div class="srv-f-eyebrow">{services.eyebrow}</div>
-      <h2 class="srv-f-h2">{services.title}</h2>
-    </div>
-    <div class="srv-f-grid">
-      {services.items.map((item, i) => (
-        <article class="srv-f-card">
-          <div class="srv-f-card-top">
-            <div class="srv-f-icon">◆</div>
-            <span class="srv-f-num">0{i + 1}</span>
-          </div>
-          <h3 class="srv-f-title">{item.title}</h3>
-          <p class="srv-f-text">{item.text}</p>
-          <a href="#contact" class="srv-f-link">En savoir plus →</a>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* ── Variante G : Verveine — cards rondes soft ───────────────────────── */}
-<section class="section v-only-g srv-g" id="services-g">
-  <div class="container">
-    <div class="srv-g-head">
-      <div class="srv-g-eyebrow">{services.eyebrow}</div>
-      <h2 class="srv-g-h2">{services.title}</h2>
-    </div>
-    <div class="srv-g-grid">
-      {services.items.map((item, i) => (
-        <article class="srv-g-card">
-          <div class={`srv-g-icon ${i === 1 ? 'srv-g-icon-peach' : 'srv-g-icon-sage'}`}>
-            {['◯','✿','✦'][i]}
-          </div>
-          <h3 class="srv-g-title">{item.title}</h3>
-          <p class="srv-g-text">{item.text}</p>
-          <div class="srv-g-footer">
-            <span class="srv-g-tag">{item.tag || 'Découvrir'}</span>
-            <span class="srv-g-link">→</span>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* ── Variante D : Forge / liste numérotée avec règles épaisses ──────── */}
-<section class="section v-only-d srv-d" id="services-d">
-  <div class="container">
-    <div class="srv-d-head">
-      <h2 class="srv-d-h2">{services.title}</h2>
-      <p class="srv-d-sub">{services.subtitle}</p>
-    </div>
-    <div class="srv-d-list">
-      {services.items.map((item, i) => (
-        <div class="srv-d-row">
-          <span class="srv-d-num">0{i + 1}</span>
-          <div class="srv-d-body">
-            <h3 class="srv-d-title">{item.title}</h3>
-            <p class="srv-d-text">{item.text}</p>
-          </div>
-          {item.tag && <span class="srv-d-tag">{item.tag}</span>}
-          <a href="#contact" class="srv-d-link" aria-label={`En savoir plus : ${item.title}`}>VOIR →</a>
+  {/* ── Variante E : Le Salon — liste numérotée éditoriale ─────────────── */}
+  <section class="section v-only-e srv-e">
+    <div class="container">
+      <div class="srv-e-grid">
+        <div class="srv-e-head">
+          <div class="srv-e-eyebrow">{services.eyebrow}</div>
+          <h2 class="srv-e-h2">{services.title}</h2>
         </div>
-      ))}
-      <div class="srv-d-rule"></div>
-    </div>
-  </div>
-</section>
- 
-{/* ── Variante H : Artisan — Style ABPM Richard ─────────────────────────── */}
-<section class="section v-only-h srv-h" id="services-h">
-  <div class="container">
-    <div class="srv-h-head">
-      <h2>{services.title}</h2>
-      <p>{services.subtitle}</p>
-    </div>
-    <div class="srv-h-grid">
-      {services.items.map((item) => (
-        <div class="srv-h-card">
-          <div class="srv-h-image">
-            <img src={item.image} alt={item.title} loading="lazy" />
-          </div>
-          <div class="srv-h-content">
-            <div class="srv-h-icon">
-              <i class="ph ph-wrench"></i>
+        <div class="srv-e-list">
+          {services.items.map((item, i) => (
+            <div class="srv-e-row">
+              <span class="srv-e-num">0{i + 1}</span>
+              <div class="srv-e-body">
+                <h3 class="srv-e-title">{item.title}</h3>
+                <p class="srv-e-text">{item.text}</p>
+              </div>
+              <span class="srv-e-arrow">↓ découvrir</span>
             </div>
-            <h3 class="srv-h-title">{item.title}</h3>
-            <p class="srv-h-text">{item.text}</p>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  {/* ── Variante F : Stade — grille cards bordered ───────────────────────── */}
+  <section class="section v-only-f srv-f">
+    <div class="container">
+      <div class="srv-f-head">
+        <div class="srv-f-eyebrow">{services.eyebrow}</div>
+        <h2 class="srv-f-h2">{services.title}</h2>
+      </div>
+      <div class="srv-f-grid">
+        {services.items.map((item, i) => (
+          <article class="srv-f-card">
+            <div class="srv-f-card-top">
+              <div class="srv-f-icon">◆</div>
+              <span class="srv-f-num">0{i + 1}</span>
+            </div>
+            <h3 class="srv-f-title">{item.title}</h3>
+            <p class="srv-f-text">{item.text}</p>
+            <a href="#contact" class="srv-f-link">En savoir plus →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Variante G : Verveine — cards rondes soft ───────────────────────── */}
+  <section class="section v-only-g srv-g">
+    <div class="container">
+      <div class="srv-g-head">
+        <div class="srv-g-eyebrow">{services.eyebrow}</div>
+        <h2 class="srv-g-h2">{services.title}</h2>
+      </div>
+      <div class="srv-g-grid">
+        {services.items.map((item, i) => (
+          <article class="srv-g-card">
+            <div class={`srv-g-icon ${i === 1 ? 'srv-g-icon-peach' : 'srv-g-icon-sage'}`}>
+              {['◯','✿','✦'][i]}
+            </div>
+            <h3 class="srv-g-title">{item.title}</h3>
+            <p class="srv-g-text">{item.text}</p>
+            <div class="srv-g-footer">
+              <span class="srv-g-tag">{item.tag || 'Découvrir'}</span>
+              <span class="srv-g-link">→</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Variante D : Forge / liste numérotée avec règles épaisses ──────── */}
+  <section class="section v-only-d srv-d">
+    <div class="container">
+      <div class="srv-d-head">
+        <h2 class="srv-d-h2">{services.title}</h2>
+        <p class="srv-d-sub">{services.subtitle}</p>
+      </div>
+      <div class="srv-d-list">
+        {services.items.map((item, i) => (
+          <div class="srv-d-row">
+            <span class="srv-d-num">0{i + 1}</span>
+            <div class="srv-d-body">
+              <h3 class="srv-d-title">{item.title}</h3>
+              <p class="srv-d-text">{item.text}</p>
+            </div>
+            {item.tag && <span class="srv-d-tag">{item.tag}</span>}
+            <a href="#contact" class="srv-d-link" aria-label={`En savoir plus : ${item.title}`}>VOIR →</a>
+          </div>
+        ))}
+        <div class="srv-d-rule"></div>
+      </div>
+    </div>
+  </section>
+ 
+  {/* ── Variante H : Artisan — Style ABPM Richard ─────────────────────────── */}
+  <section class="section v-only-h srv-h">
+    <div class="container">
+      <div class="srv-h-head">
+        <h2>{services.title}</h2>
+        <p>{services.subtitle}</p>
+      </div>
+      <div class="srv-h-grid">
+        {services.items.map((item) => (
+          <div class="srv-h-card">
+            <div class="srv-h-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+            </div>
+            <div class="srv-h-content">
+              <div class="srv-h-icon">
+                <i class="ph ph-wrench"></i>
+              </div>
+              <h3 class="srv-h-title">{item.title}</h3>
+              <p class="srv-h-text">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>
 
 <style>
 .srv-h2 {
